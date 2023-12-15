@@ -14,7 +14,10 @@ class CategoriesServiceProvider extends PackageServiceProvider
     {
         $package->name(self::$name)
             ->hasConfigFile()
-            ->hasMigrations(['create_categories_table'])
+            ->hasMigrations([
+                'create_categories_table',
+                'create_categorizables_table'
+            ])
             ->runsMigrations()
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command->startWith(function (InstallCommand $command) {

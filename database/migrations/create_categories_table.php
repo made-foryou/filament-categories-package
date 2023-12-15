@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         $prefix = config('filament-categories.database.prefix');
-        $table_name = $prefix . '_' . config('filament-categories.database.categories_table');
+        $table_name = $prefix . '_categories';
 
         Schema::create($table_name, function (Blueprint $table) {
             $table->id();
