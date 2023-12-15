@@ -5,6 +5,6 @@ return [
     'database' => [
 
         'prefix' => 'made',
-    ]
+    ],
 
 ];

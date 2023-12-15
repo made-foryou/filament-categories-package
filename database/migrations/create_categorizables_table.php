@@ -15,9 +15,8 @@ return new class extends Migration
 
             $table->foreignId('category_id')
                 ->references('id')
-                ->on($prefix .'_categories')
+                ->on($prefix . '_categories')
                 ->cascadeOnDelete();
-
 
             $table->morphs('categorizable');
 
