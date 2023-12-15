@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +22,14 @@ return new class extends Migration
 
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::table($table_name, function (Blueprint $table) use ($table_name) {
+            $table->foreignId('parent_id')
+                ->nullable()
+                ->references('id')
+                ->on($table_name)
+                ->nullOnDelete();
         });
     }
 };
