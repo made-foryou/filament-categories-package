@@ -1,0 +1,5 @@
+<?php
+
+use MadeForYou\Categories\Tests\TestCase;
+
+uses(TestCase::class)->in(__DIR__);
