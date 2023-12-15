@@ -68,7 +68,9 @@ class Category extends Model
      */
     public function getTable()
     {
-        $prefix = config('filemant-categories.database.prefix');
+        $prefix = config('filament-categories.database.prefix');
+
+        dd('prefix', $prefix);
 
         return $prefix . '_' . parent::getTable();
     }
