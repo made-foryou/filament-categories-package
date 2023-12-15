@@ -43,6 +43,17 @@ class Category extends Model
     ];
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
+    protected $fillable = [
+        'name',
+        'description',
+        'content',
+    ];
+
+    /**
      * Get the parent category of the current category.
      */
     public function parent(): BelongsTo
