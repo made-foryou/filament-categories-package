@@ -1,0 +1,47 @@
+{
+    "name": "made-foryou/filament-categories",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MadeForYou\\Categories\\": "src/",
+            "MadeForYou\\Categories\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MadeForYou\\Categories\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Menno Tempelaar",
+            "email": "menno@made-foryou.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "~8.0",
+        "spatie/laravel-package-tools": "^1.16",
+        "filament/filament": "^3.1",
+        "livewire/livewire": "^3.2"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.13",
+        "pestphp/pest": "^2.28",
+        "orchestra/testbench": "^8.17",
+        "pestphp/pest-plugin-laravel": "^2.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MadeForYou\\Categories\\CategoriesServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
