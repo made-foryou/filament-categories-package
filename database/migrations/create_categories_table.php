@@ -27,6 +27,7 @@ return new class extends Migration
         Schema::table($table_name, function (Blueprint $table) use ($table_name) {
             $table->foreignId('parent_id')
                 ->nullable()
+                ->after('content')
                 ->references('id')
                 ->on($table_name)
                 ->nullOnDelete();
