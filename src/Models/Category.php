@@ -2,9 +2,9 @@
 
 namespace MadeForYou\Categories\Models;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * ## Category model
@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
  * @property-read ?Carbon $deleted_at
- *
  * @property-read ?Category $parent
  */
 class Category extends Model
@@ -45,8 +44,6 @@ class Category extends Model
 
     /**
      * Get the parent category of the current category.
-     *
-     * @return BelongsTo
      */
     public function parent(): BelongsTo
     {
@@ -55,8 +52,6 @@ class Category extends Model
 
     /**
      * Get the table associated with the model.
-     *
-     * @return string
      */
     public function getTable(): string
     {
