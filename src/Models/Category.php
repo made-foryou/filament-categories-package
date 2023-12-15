@@ -70,8 +70,6 @@ class Category extends Model
     {
         $prefix = config('filament-categories.database.prefix');
 
-        dd('prefix', $prefix);
-
         return $prefix . '_' . parent::getTable();
     }
 }
