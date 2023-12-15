@@ -52,8 +52,10 @@ class Category extends Model
 
     /**
      * Get the table associated with the model.
+     *
+     * @return string
      */
-    public function getTable(): string
+    public function getTable()
     {
         $prefix = config('filemant-categories.database.prefix');
 
