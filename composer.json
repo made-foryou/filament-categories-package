@@ -15,7 +15,8 @@
     "authors": [
         {
             "name": "Menno Tempelaar",
-            "email": "menno@made-foryou.nl"
+            "email": "menno@made-foryou.nl",
+            "role": "dev"
         }
     ],
     "minimum-stability": "dev",
