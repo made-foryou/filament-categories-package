@@ -4,6 +4,7 @@ namespace MadeForYou\Categories;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use MadeForYou\Categories\Resources\CategoryResource;
 
 class Categorieslugin implements Plugin
 {
@@ -19,7 +20,10 @@ class Categorieslugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        $panel
+            ->resources([
+                CategoryResource::class,
+            ]);
     }
 
     public function boot(Panel $panel): void
