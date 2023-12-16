@@ -15,14 +15,14 @@ class FilamentCategoriesPlugin implements Plugin
 
     public function getId(): string
     {
-        return CategoriesServiceProvider::$name;
+        return FilamentCategoriesServiceProvider::$name;
     }
 
     public function register(Panel $panel): void
     {
         $panel
             ->resources([
-                'CategoryResource' => CategoryResource::class,
+                CategoryResource::class,
             ]);
     }
 

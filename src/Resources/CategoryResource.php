@@ -22,7 +22,7 @@ use Filament\Tables\Actions\ForceDeleteAction;
 use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use MadeForYou\Categories\Resources\UserResource\ListCategories;
+use MadeForYou\Categories\Resources\CategoryResource\ListCategories;
 use MadeForYou\Categories\Resources\CategoryResource\EditCategory;
 use MadeForYou\Categories\Resources\CategoryResource\ViewCategory;
 use MadeForYou\Categories\Resources\CategoryResource\CreateCategory;

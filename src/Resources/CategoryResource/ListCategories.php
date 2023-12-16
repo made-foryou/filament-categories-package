@@ -1,6 +1,6 @@
 <?php
 
-namespace MadeForYou\Categories\Resources\UserResource;
+namespace MadeForYou\Categories\Resources\CategoryResource;
 
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
