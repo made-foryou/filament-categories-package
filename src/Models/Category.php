@@ -4,6 +4,7 @@ namespace MadeForYou\Categories\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
@@ -22,6 +23,8 @@ use Illuminate\Support\Carbon;
  */
 class Category extends Model
 {
+    use SoftDeletes;
+
     /**
      * The table associated with the model.
      *
