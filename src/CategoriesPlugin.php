@@ -22,7 +22,7 @@ class Categorieslugin implements Plugin
     {
         $panel
             ->resources([
-                CategoryResource::class,
+                'CategoryResource' => CategoryResource::class,
             ]);
     }
 
