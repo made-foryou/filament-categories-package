@@ -8,24 +8,24 @@ use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Filters\TrashedFilter;
 use MadeForYou\Categories\Models\Category;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\ForceDeleteAction;
 use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ForceDeleteBulkAction;
-use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use MadeForYou\Categories\Resources\CategoryResource\CreateCategory;
+use MadeForYou\Categories\Resources\UserResource\ListCategories;
 use MadeForYou\Categories\Resources\CategoryResource\EditCategory;
 use MadeForYou\Categories\Resources\CategoryResource\ViewCategory;
-use MadeForYou\Categories\Resources\UserResource\ListCategories;
+use MadeForYou\Categories\Resources\CategoryResource\CreateCategory;
 
 class CategoryResource extends Resource
 {
