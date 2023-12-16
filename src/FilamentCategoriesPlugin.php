@@ -6,7 +6,7 @@ use Filament\Contracts\Plugin;
 use Filament\Panel;
 use MadeForYou\Categories\Resources\CategoryResource;
 
-class CategoriesPlugin implements Plugin
+class FilamentCategoriesPlugin implements Plugin
 {
     public static function make(): static
     {
