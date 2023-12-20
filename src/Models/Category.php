@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * ## Category model
@@ -70,9 +71,12 @@ class Category extends Model
     /**
      * Get the children categories of this category.
      */
-    public function children(): BelongsToMany
+    public function children(): HasMany
     {
-        return $this->belongsToMany(Category::class, $this->getTable(), 'parent_id');
+        return $this->hasMany(
+            related: Category::class,
+            foreignKey: 'parent_id'
+        );
     }
 
     /**

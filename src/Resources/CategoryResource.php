@@ -31,6 +31,7 @@ use MadeForYou\Categories\Models\Category;
 use MadeForYou\Categories\Resources\CategoryResource\CreateCategory;
 use MadeForYou\Categories\Resources\CategoryResource\EditCategory;
 use MadeForYou\Categories\Resources\CategoryResource\ListCategories;
+use MadeForYou\Categories\Resources\CategoryResource\RelationManagers\ChildrenRelationManager;
 use MadeForYou\Categories\Resources\CategoryResource\ViewCategory;
 
 class CategoryResource extends Resource
@@ -165,7 +166,7 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ChildrenRelationManager::class,
         ];
     }
 
