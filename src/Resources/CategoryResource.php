@@ -83,13 +83,12 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->label('Naam')
-                    ->description(fn (Category $category): ?string => $category->description),
-
                 TextColumn::make('parent.name')
                     ->label('Hoofdcategorie'),
 
+                TextColumn::make('name')
+                    ->label('Naam')
+                    ->description(fn (Category $category): ?string => $category->description),
             ])
             ->filters([
                 TrashedFilter::make(),
