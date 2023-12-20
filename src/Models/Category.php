@@ -2,10 +2,11 @@
 
 namespace MadeForYou\Categories\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * ## Category model
@@ -24,13 +25,6 @@ use Illuminate\Support\Carbon;
 class Category extends Model
 {
     use SoftDeletes;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'categories';
 
     /**
      * The attributes that should be cast.
@@ -57,11 +51,28 @@ class Category extends Model
     ];
 
     /**
+     * The model's attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'content' => '{}',
+    ];
+
+    /**
      * Get the parent category of the current category.
      */
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    /**
+     * Get the children categories of this category.
+     */
+    public function children(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class, $this->getTable(), 'parent_id');
     }
 
     /**
@@ -73,6 +84,6 @@ class Category extends Model
     {
         $prefix = config('filament-categories.database.prefix');
 
-        return $prefix . '_' . parent::getTable();
+        return $prefix . '_categories';
     }
 }
