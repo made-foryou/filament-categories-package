@@ -11,8 +11,6 @@ trait WithCategories
 {
     /**
      * Get the category associated with the model.
-     *
-     * @return MorphToMany
      */
     public function category(): MorphToMany
     {
@@ -25,8 +23,6 @@ trait WithCategories
 
     /**
      * Get the categories associated with the model.
-     *
-     * @return MorphToMany
      */
     public function categories(): MorphToMany
     {

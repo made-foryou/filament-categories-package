@@ -3,17 +3,17 @@
 namespace MadeForYou\Categories\Resources\CategoryResource\RelationManagers;
 
 use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
-use Filament\Tables\Columns\TextColumn;
-use MadeForYou\Categories\Models\Category;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables;
 use Filament\Tables\Actions\AssociateAction;
 use Filament\Tables\Actions\DissociateAction;
 use Filament\Tables\Actions\DissociateBulkAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use MadeForYou\Categories\Models\Category;
 
 class ChildrenRelationManager extends RelationManager
 {
@@ -33,7 +33,7 @@ class ChildrenRelationManager extends RelationManager
 
                 Select::make(name: 'parent_id')
                     ->label(label: 'Hoofdcategorie')
-                    ->relationship(name: 'parent', titleAttribute: 'name')
+                    ->relationship(name: 'parent', titleAttribute: 'name'),
             ]);
     }
 
