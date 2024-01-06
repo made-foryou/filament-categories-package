@@ -23,6 +23,7 @@ use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -93,6 +94,17 @@ class CategoryResource extends Resource
             ])
             ->filters([
                 TrashedFilter::make(),
+
+                SelectFilter::make('parent')
+                    ->label('Bovenliggende categorie')
+                    ->options(Category::pluck('name', 'id'))
+                    ->query(function (Builder $query, array $data) {
+                        if (blank($data['value'])) {
+                            return $query;
+                        }
+
+                        return $query->where('parent_id', '=', $data['value']);
+                    }),
             ])
             ->actions([
                 ViewAction::make(),
