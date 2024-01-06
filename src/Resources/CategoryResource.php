@@ -135,6 +135,9 @@ class CategoryResource extends Resource
                                     ->schema([
                                         TextEntry::make('name')
                                             ->label('Naam'),
+
+                                        TextEntry::make('description')
+                                            ->label('Omschrijving'),
                                     ]),
                             ])
                             ->aside(),
