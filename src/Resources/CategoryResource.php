@@ -38,7 +38,7 @@ use MadeForYou\Categories\Resources\CategoryResource\ViewCategory;
 class CategoryResource extends Resource
 {
     /**
-     * @var class-string<User>
+     * @var class-string<Category>
      */
     protected static ?string $model = Category::class;
 
