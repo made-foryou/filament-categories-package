@@ -15,8 +15,8 @@ class FilamentCategoriesServiceProvider extends PackageServiceProvider
         $package->name(self::$name)
             ->hasConfigFile()
             ->hasMigrations([
-                'create_categories_table',
-                'create_categorizables_table',
+                '0101012024_create_categories_table',
+                '0201012024_create_categorizables_table',
             ])
             ->runsMigrations()
             ->hasInstallCommand(function (InstallCommand $command) {
