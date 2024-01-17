@@ -2,8 +2,10 @@
 
 namespace MadeForYou\Categories\Resources;
 
+use Exception;
 use Filament\Forms\Components\Section as ComponentsSection;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -22,6 +24,7 @@ use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
@@ -29,7 +32,6 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use MadeForYou\Categories\Models\Category;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use MadeForYou\Categories\Resources\CategoryResource\CreateCategory;
 use MadeForYou\Categories\Resources\CategoryResource\EditCategory;
 use MadeForYou\Categories\Resources\CategoryResource\ListCategories;
@@ -40,13 +42,11 @@ use MadeForYou\Categories\Resources\CategoryResource\ViewCategory;
  * Class CategoryResource
  *
  * This class represents a resource for managing categories.
- *
- * @package App\Resources
  */
 class CategoryResource extends Resource
 {
     /**
-     * @var class-string<Category>
+     * @var class-string<Category>|null
      */
     protected static ?string $model = Category::class;
 
@@ -93,41 +93,47 @@ class CategoryResource extends Resource
 
     /**
      * Generate a table with specified columns, filters, actions, and bulk actions.
+     *
+     * @throws Exception
      */
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('parent.name')
-                    ->label('Hoofdcategorie'),
+            ->columns(components: [
+                SpatieMediaLibraryImageColumn::make(name: 'poster')
+                    ->collection(collection: 'poster')
+                    ->conversion(conversion: 'preview'),
 
-                TextColumn::make('name')
-                    ->label('Naam')
-                    ->description(fn (Category $category): ?string => $category->description),
+                TextColumn::make(name: 'name')
+                    ->label(label: 'Naam')
+                    ->description(description: fn (Category $category): ?string => $category->description),
+
+                TextColumn::make(name: 'parent.name')
+                    ->label(label: 'Hoofdcategorie'),
             ])
-            ->filters([
+            ->filters(filters: [
                 TrashedFilter::make(),
 
-                SelectFilter::make('parent')
-                    ->label('Bovenliggende categorie')
-                    ->options(Category::pluck('name', 'id'))
-                    ->query(function (Builder $query, array $data) {
+                SelectFilter::make(name: 'parent')
+                    ->label(label: 'Bovenliggende categorie')
+                    ->options(options: Category::all()->pluck(value: 'name', key: 'id'))
+                    ->query(callback: function (Builder $query, array $data) {
                         if (blank($data['value'])) {
                             return $query;
                         }
 
-                        return $query->where('parent_id', '=', $data['value']);
+                        return $query->where(column: 'parent_id', operator: '=', value: $data['value']);
                     }),
             ])
-            ->actions([
+            ->actions(actions: [
                 ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make(),
                 ForceDeleteAction::make(),
                 RestoreAction::make(),
             ])
-            ->bulkActions([
-                BulkActionGroup::make([
+            ->bulkActions(actions: [
+                BulkActionGroup::make(actions: [
                     DeleteBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
