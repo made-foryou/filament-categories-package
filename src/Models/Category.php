@@ -2,11 +2,16 @@
 
 namespace MadeForYou\Categories\Models;
 
+use Spatie\Image\Enums\Fit;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * ## Category model
@@ -21,9 +26,11 @@ use Illuminate\Support\Carbon;
  * @property-read Carbon $updated_at
  * @property-read ?Carbon $deleted_at
  * @property-read ?Category $parent
+ * @property-read Collection<Category> $children
  */
-class Category extends Model
+class Category extends Model implements HasMedia
 {
+    use InteractsWithMedia;
     use SoftDeletes;
 
     /**
@@ -61,6 +68,8 @@ class Category extends Model
 
     /**
      * Get the parent category of the current category.
+     *
+     * @return BelongsTo
      */
     public function parent(): BelongsTo
     {
@@ -68,7 +77,9 @@ class Category extends Model
     }
 
     /**
-     * Get the children categories of this category.
+     * Get the child categories associated with the current category.
+     *
+     * @return HasMany
      */
     public function children(): HasMany
     {
@@ -79,11 +90,37 @@ class Category extends Model
     }
 
     /**
+     * Register the media collections for the model.
+     *
+     * @return void
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('poster')
+            ->singleFile()
+            ->withResponsiveImages();
+    }
+
+    /**
+     * Register media conversions for the given media.
+     *
+     * @param  Media|null  $media  The media to register conversions for. Default is null.
+     *
+     * @return void
+     */
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
+    }
+
+    /**
      * Get the table associated with the model.
      *
      * @return string
      */
-    public function getTable()
+    public function getTable(): string
     {
         $prefix = config('filament-categories.database.prefix');
 

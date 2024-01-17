@@ -29,12 +29,20 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use MadeForYou\Categories\Models\Category;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use MadeForYou\Categories\Resources\CategoryResource\CreateCategory;
 use MadeForYou\Categories\Resources\CategoryResource\EditCategory;
 use MadeForYou\Categories\Resources\CategoryResource\ListCategories;
 use MadeForYou\Categories\Resources\CategoryResource\RelationManagers\ChildrenRelationManager;
 use MadeForYou\Categories\Resources\CategoryResource\ViewCategory;
 
+/**
+ * Class CategoryResource
+ *
+ * This class represents a resource for managing categories.
+ *
+ * @package App\Resources
+ */
 class CategoryResource extends Resource
 {
     /**
@@ -53,26 +61,31 @@ class CategoryResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                ComponentsSection::make('Categorie')
-                    ->description('Algemene informatie van de categorie')
+            ->schema(components: [
+                ComponentsSection::make(heading: 'Categorie')
+                    ->description(description: 'Algemene informatie van de categorie')
                     ->aside()
-                    ->columns([
+                    ->columns(columns: [
                         'sm' => 1,
                     ])
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Naam')
+                    ->schema(components: [
+                        TextInput::make(name: 'name')
+                            ->label(label: 'Naam')
                             ->required()
-                            ->maxLength(255)
+                            ->maxLength(length: 255)
                             ->string(),
 
-                        Textarea::make('description')
-                            ->label('Omschrijving'),
+                        SpatieMediaLibraryFileUpload::make(name: 'poster')
+                            ->collection(collection: 'poster')
+                            ->label(label: 'Poster afbeelding')
+                            ->responsiveImages(),
 
-                        Select::make('parent_id')
-                            ->label('Bovenliggende categorie')
-                            ->helperText('Categorie waaronder deze categorie hangt.')
+                        Textarea::make(name: 'description')
+                            ->label(label: 'Omschrijving'),
+
+                        Select::make(name: 'parent_id')
+                            ->label(label: 'Bovenliggende categorie')
+                            ->helperText(text: 'Categorie waaronder deze categorie hangt.')
                             ->relationship(name: 'parent', titleAttribute: 'name'),
                     ]),
             ]);
@@ -178,6 +191,11 @@ class CategoryResource extends Resource
             ]);
     }
 
+    /**
+     * Get the array of relation managers for the model.
+     *
+     * @return array The array of relation managers.
+     */
     public static function getRelations(): array
     {
         return [
