@@ -32,7 +32,8 @@
         "spatie/laravel-package-tools": "^1.16",
         "filament/filament": "^3.1",
         "livewire/livewire": "^3.2",
-        "made-foryou/filament-helpers": "dev-main"
+        "made-foryou/filament-helpers": "dev-main",
+        "filament/spatie-laravel-media-library-plugin": "^3.2"
     },
     "require-dev": {
         "laravel/pint": "^1.13",
