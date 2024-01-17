@@ -19,13 +19,20 @@
             "role": "dev"
         }
     ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./../filament-helpers"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": "~8.2",
         "spatie/laravel-package-tools": "^1.16",
         "filament/filament": "^3.1",
-        "livewire/livewire": "^3.2"
+        "livewire/livewire": "^3.2",
+        "made-foryou/filament-helpers": "dev-main"
     },
     "require-dev": {
         "laravel/pint": "^1.13",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a28f101860d896b880a7254dec1bdd5",
+    "content-hash": "5871a134c4ab785834b17b21d7f9c11c",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -2929,6 +2929,53 @@
                 }
             ],
             "time": "2024-01-02T14:29:17+00:00"
+        },
+        {
+            "name": "made-foryou/filament-helpers",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./../filament-helpers",
+                "reference": "2fdeacc84ca78ca292bf6842904fa4e2cbb89ce8"
+            },
+            "require": {
+                "php": "~8.0",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.13",
+                "orchestra/testbench": "^8.20"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MadeForYou\\Helpers\\HelpersServiceProvider"
+                    ],
+                    "aliases": {
+                        "Packages": "MadeForYou\\Helpers\\Facades\\Packages"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MadeForYou\\Helpers\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Menno Tempelaar",
+                    "email": "menno@made-foryou.nl",
+                    "role": "development"
+                }
+            ],
+            "description": "Helpers for the development of projects with the filament packages.",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "masterminds/html5",
