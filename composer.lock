@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c3d98cf27d51544913ca6c050251eb3",
+    "content-hash": "e141bbc8881789d9009a5097a9a7aa4c",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -8240,6 +8240,62 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.9.0"
             },
             "time": "2024-01-04T16:10:04+00:00"
+        },
+        {
+            "name": "made-foryou/filament-news",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./../filament-news-package",
+                "reference": "0f54f1178f27bf900d26401a83540f6449ec9254"
+            },
+            "require": {
+                "filament/filament": "^3.1",
+                "filament/spatie-laravel-media-library-plugin": "^3.1",
+                "livewire/livewire": "^3.2",
+                "made-foryou/filament-categories": "dev-main",
+                "made-foryou/filament-helpers": "dev-main",
+                "php": "~8.0",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.13",
+                "orchestra/testbench": "^8.17",
+                "pestphp/pest": "^2.28",
+                "pestphp/pest-plugin-laravel": "^2.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MadeForYou\\News\\NewsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MadeForYou\\News\\": "src/",
+                    "MadeForYou\\News\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "MadeForYou\\News\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Menno Tempelaar",
+                    "email": "menno@made-foryou.nl",
+                    "role": "Developer"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "mockery/mockery",

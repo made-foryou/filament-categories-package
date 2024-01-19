@@ -23,6 +23,10 @@
         {
             "type": "path",
             "url": "./../filament-helpers"
+        },
+        {
+            "type": "path",
+            "url": "./../filament-news-package"
         }
     ],
     "minimum-stability": "dev",
@@ -39,7 +43,8 @@
         "laravel/pint": "^1.13",
         "pestphp/pest": "^2.28",
         "orchestra/testbench": "^8.17",
-        "pestphp/pest-plugin-laravel": "^2.2"
+        "pestphp/pest-plugin-laravel": "^2.2",
+        "made-foryou/filament-news": "dev-main"
     },
     "extra": {
         "laravel": {
