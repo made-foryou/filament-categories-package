@@ -204,8 +204,12 @@ class CategoryResource extends Resource
      */
     public static function getRelations(): array
     {
+        $definedRelations = config(key: 'filament-categories.category_relations');
+
         return [
             ChildrenRelationManager::class,
+
+            ...$definedRelations,
         ];
     }
 
