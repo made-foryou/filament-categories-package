@@ -5,6 +5,7 @@ namespace MadeForYou\Categories\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use MadeForYou\Helpers\Enums\FilamentPackage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -96,7 +97,7 @@ class Category extends Model implements HasMedia
      */
     public function posts(): HasMany
     {
-        if (! Packages::uses(Packages::PACAKGE_NEWS)) {
+        if (! Packages::uses(FilamentPackage::News)) {
             throw new Exception('The news package is not being used within the project.');
         }
 
