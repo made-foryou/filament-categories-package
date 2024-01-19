@@ -2,13 +2,16 @@
 
 namespace MadeForYou\Categories\Models;
 
-use Spatie\Image\Enums\Fit;
-use Illuminate\Database\Eloquent\Model;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use MadeForYou\Helpers\Facades\Packages;
+use MadeForYou\News\Models\Post;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -68,8 +71,6 @@ class Category extends Model implements HasMedia
 
     /**
      * Get the parent category of the current category.
-     *
-     * @return BelongsTo
      */
     public function parent(): BelongsTo
     {
@@ -78,8 +79,6 @@ class Category extends Model implements HasMedia
 
     /**
      * Get the child categories associated with the current category.
-     *
-     * @return HasMany
      */
     public function children(): HasMany
     {
@@ -90,9 +89,22 @@ class Category extends Model implements HasMedia
     }
 
     /**
-     * Register the media collections for the model.
+     * Retrieve the posts related to this category.
      *
-     * @return void
+     * @throws Exception If the news package is not being used within the project.
+     * @return HasMany
+     */
+    public function posts(): HasMany
+    {
+        if (! Packages::uses(Packages::PACAKGE_NEWS)) {
+            throw new Exception('The news package is not being used within the project.');
+        }
+
+        return $this->hasMany(related: Post::class, foreignKey: 'category_id');
+    }
+
+    /**
+     * Register the media collections for the model.
      */
     public function registerMediaCollections(): void
     {
@@ -105,8 +117,6 @@ class Category extends Model implements HasMedia
      * Register media conversions for the given media.
      *
      * @param  Media|null  $media  The media to register conversions for. Default is null.
-     *
-     * @return void
      */
     public function registerMediaConversions(?Media $media = null): void
     {
@@ -117,8 +127,6 @@ class Category extends Model implements HasMedia
 
     /**
      * Get the table associated with the model.
-     *
-     * @return string
      */
     public function getTable(): string
     {
