@@ -18,11 +18,11 @@ class FilamentCategoriesServiceProvider extends PackageServiceProvider
                 '0101012024_create_categories_table',
                 '0201012024_create_categorizables_table',
             ])
-            ->runsMigrations()
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command->startWith(function (InstallCommand $command) {
                     $command->info('Let\'s install the package');
                 })
+                    ->publishMigrations()
                     ->publishConfigFile();
             });
     }
