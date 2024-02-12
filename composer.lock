@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64ba23956ad3d7841d41754a669cc506",
+    "content-hash": "b1ce08837c3c205c3c0f55643af385c2",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -3012,6 +3012,53 @@
                 }
             ],
             "description": "Helpers for the development of projects with the filament packages.",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "made-foryou/routes",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./../routes",
+                "reference": "2e74346604e393566e09284628bbef40dd154000"
+            },
+            "require": {
+                "php": "~8.3",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.13",
+                "orchestra/testbench": "^8.21"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MadeForYou\\Routes\\RoutesServiceProvider"
+                    ],
+                    "aliases": {
+                        "Routing": "MadeForYou\\Routes\\Facades\\Routing"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MadeForYou\\Routes\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Menno Tempelaar",
+                    "email": "menno@made-foryou.nl",
+                    "role": "developer"
+                }
+            ],
+            "description": "A packages which can provide routing generated from the database.",
             "transport-options": {
                 "relative": true
             }
@@ -8248,7 +8295,7 @@
             "dist": {
                 "type": "path",
                 "url": "./../filament-news-package",
-                "reference": "12b917c87661b0a9235d53d84ca443334819ddb9"
+                "reference": "eeb8650885df8084902c270f87ffe8b33a3e56af"
             },
             "require": {
                 "filament/filament": "^3.1",
@@ -8295,53 +8342,6 @@
                     "role": "Developer"
                 }
             ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "made-foryou/routes",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "./../routes",
-                "reference": "a892cf482a0b2ac3f2fe82cea9fe1674a0f523a1"
-            },
-            "require": {
-                "php": "~8.3",
-                "spatie/laravel-package-tools": "^1.16"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.13",
-                "orchestra/testbench": "^8.21"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "MadeForYou\\Routes\\RoutesServiceProvider"
-                    ],
-                    "aliases": {
-                        "Routing": "MadeForYou\\Routes\\Facades\\Routing"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MadeForYou\\Routes\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Menno Tempelaar",
-                    "email": "menno@made-foryou.nl",
-                    "role": "developer"
-                }
-            ],
-            "description": "A packages which can provide routing generated from the database.",
             "transport-options": {
                 "relative": true
             }
