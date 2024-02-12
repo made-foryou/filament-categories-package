@@ -6,15 +6,12 @@ use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use MadeForYou\Helpers\Enums\FilamentPackage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use MadeForYou\Categories\Database\Factories\CategoryFactory;
-use MadeForYou\Helpers\Enums\FilamentPackage;
-use MadeForYou\Helpers\Facades\Packages;
 use MadeForYou\News\Models\Post;
 use MadeForYou\Routes\Contracts\HasRoute;
 use MadeForYou\Routes\Models\WithRoute;
@@ -101,14 +98,9 @@ class Category extends Model implements HasMedia, HasRoute
      * Retrieve the posts related to this category.
      *
      * @throws Exception If the news package is not being used within the project.
-     * @return HasMany
      */
     public function posts(): HasMany
     {
-        if (! Packages::uses(FilamentPackage::News)) {
-            throw new Exception('The news package is not being used within the project.');
-        }
-
         return $this->hasMany(related: Post::class, foreignKey: 'category_id');
     }
 

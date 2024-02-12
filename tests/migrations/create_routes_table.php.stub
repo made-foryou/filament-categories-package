@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('made_routes', function (Blueprint $table) {
+            $table->id();
+
+            $table->numericMorphs('routed');
+            $table->unique(['routed_type', 'routed_id']);
+
+            $table->string('url');
+
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('made_routes');
+    }
+};
