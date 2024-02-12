@@ -4,14 +4,20 @@ namespace MadeForYou\Categories\Models;
 
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use MadeForYou\Helpers\Enums\FilamentPackage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
+use MadeForYou\Categories\Database\Factories\CategoryFactory;
+use MadeForYou\Helpers\Enums\FilamentPackage;
 use MadeForYou\Helpers\Facades\Packages;
 use MadeForYou\News\Models\Post;
+use MadeForYou\Routes\Contracts\HasRoute;
+use MadeForYou\Routes\Models\WithRoute;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -32,10 +38,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read ?Category $parent
  * @property-read Collection<Category> $children
  */
-class Category extends Model implements HasMedia
+class Category extends Model implements HasMedia, HasRoute
 {
+    use HasFactory;
     use InteractsWithMedia;
     use SoftDeletes;
+    use WithRoute;
 
     /**
      * The attributes that should be cast.
@@ -123,7 +131,7 @@ class Category extends Model implements HasMedia
     {
         $this->addMediaConversion('preview')
             ->fit(Fit::Contain, 300, 300)
-            ->nonQueued();
+            ->queued();
     }
 
     /**
@@ -134,5 +142,30 @@ class Category extends Model implements HasMedia
         $prefix = config('filament-categories.database.prefix');
 
         return $prefix . '_categories';
+    }
+
+    #[\Override]
+    public function getUrl(): string
+    {
+        $segments = collect([]);
+
+        if ($this->parent !== null) {
+            $segments->push($this->parent->getUrl());
+        }
+
+        $segments->push(Str::slug($this->name));
+
+        return $segments->join(DIRECTORY_SEPARATOR);
+    }
+
+    #[\Override]
+    public function getRouteName(): string
+    {
+        return 'category.' . $this->id;
+    }
+
+    protected static function newFactory(): CategoryFactory
+    {
+        return CategoryFactory::new();
     }
 }
