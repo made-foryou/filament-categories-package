@@ -106,3 +106,9 @@ it('registers the media collections', function () {
         ->and($category->getMediaCollection('poster')->name)
         ->toBe('poster');
 });
+
+it('can register media conversions', function () {
+    $category = Category::factory()->createOne();
+
+    expect($category->registerMediaConversions())->toBeNull();
+});

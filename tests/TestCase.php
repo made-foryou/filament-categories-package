@@ -9,6 +9,7 @@ use MadeForYou\Helpers\HelpersServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\LivewireServiceProvider;
+use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 use MadeForYou\Categories\FilamentCategoriesServiceProvider;
 use MadeForYou\Routes\RoutesServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
@@ -39,6 +40,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
+            MediaLibraryServiceProvider::class,
             LivewireServiceProvider::class,
             FilamentServiceProvider::class,
             HelpersServiceProvider::class,
