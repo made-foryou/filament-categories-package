@@ -4,6 +4,7 @@ namespace MadeForYou\Categories\Models;
 
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use MadeForYou\Categories\Resources\CategoryResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -166,6 +167,12 @@ class Category extends Model implements HasMedia, HasRoute
     public function getType(): string
     {
         return 'Categorie';
+    }
+
+    #[\Override]
+    public function getResourceLink(): string
+    {
+        return CategoryResource::getUrl('view', ['record' => $this]);
     }
 
     protected static function newFactory(): CategoryFactory
