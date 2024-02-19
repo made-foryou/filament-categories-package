@@ -156,6 +156,18 @@ class Category extends Model implements HasMedia, HasRoute
         return 'category.' . $this->id;
     }
 
+    #[\Override]
+    public function getTitle(): string
+    {
+        return $this->name;
+    }
+
+    #[\Override]
+    public function getType(): string
+    {
+        return 'Categorie';
+    }
+
     protected static function newFactory(): CategoryFactory
     {
         return CategoryFactory::new();
